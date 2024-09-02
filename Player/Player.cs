@@ -10,7 +10,6 @@ public class Player : Entity
     public PlayerMovementState movementState { get; private set; }
     public PlayerAirState airState { get; private set; }
     public PlayerJumpState jumpState { get; private set; }
- 
     #endregion
 
     #region Settings
