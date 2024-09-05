@@ -10,11 +10,16 @@ public class Player : Entity
     public PlayerMovementState movementState { get; private set; }
     public PlayerAirState airState { get; private set; }
     public PlayerJumpState jumpState { get; private set; }
+    public PlayerPrimaryAttackState primaryAttackState { get; private set; }
     #endregion
 
     #region Settings
     public float moveSpeed = 7f;
     public float jumpForce = 10f;
+
+    [Header("Attack details")]
+    public Vector3[] attackMovement;
+    public float counterAttackDuration = .2f;
     #endregion
 
     protected override void Start() 
@@ -26,7 +31,7 @@ public class Player : Entity
         movementState = new PlayerMovementState(this, stateMachine, "Move");
         airState = new PlayerAirState(this, stateMachine, "Jump");
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
-
+        primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         stateMachine.Initialize(idleState);
     }
 
@@ -39,4 +44,6 @@ public class Player : Entity
     {
         stateMachine.currentState.FixedUpdate();
     }
+
+    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 }

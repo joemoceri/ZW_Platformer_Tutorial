@@ -29,18 +29,16 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.airState);
         }
 
-
-
         if (Input.GetKeyUp(KeyCode.Space) && player.IsGroundDetected())
         {
             stateMachine.ChangeState(player.jumpState);
         }
 
-      /*  if (Input.GetKeyUp(KeyCode.K))
+        if (Input.GetKeyUp(KeyCode.K))
         {
             stateMachine.ChangeState(player.primaryAttackState);
         }
-*/
+
 
     }
 }
