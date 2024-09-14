@@ -52,16 +52,16 @@ public class Entity : MonoBehaviour
         //Rotate the player model according to the input
         if (x != 0)
         {
-            facing.y = x > 0 ? 0 : 180;
+            facing.y = x > 0 ? 90 : -90;
             playerModel.localEulerAngles = facing;
         }
 
-        if (facing.y == 0f)
+        if (facing.y == 90)
         {
             facingLeft = false;
             facingDir = 1;
         }
-        else if (facing.y == 180f)
+        else if (facing.y == -90)
         {
             facingLeft = true;
             facingDir = -1;
@@ -101,6 +101,21 @@ public class Entity : MonoBehaviour
     public void SetZeroVelocity()
     {
         RB.velocity = new Vector3(0f, 0f, 0f);
+    }
+
+    public void SetAttackVelocity(float xVelocity, float yVelocity, float zVelocity, float speed)
+    {
+        /*if (isKnocked)
+            return;*/
+        // Get the dash direction based on player's forward vector
+        Vector3 offset = new Vector3(xVelocity, yVelocity, zVelocity);
+
+        // Transform the local direction to world space
+        Vector3 worldDirection = transform.TransformDirection(offset);
+
+        // Set velocity based on dash direction
+        // Apply velocity using AddForce
+        RB.AddForce(worldDirection.normalized * speed, ForceMode.VelocityChange);
     }
     #endregion
 

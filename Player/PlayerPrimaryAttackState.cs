@@ -21,7 +21,7 @@ public class PlayerPrimaryAttackState : PlayerState
 
         xInput = 0;  // we need this to fix bug on attack direction
 
-        if (comboCounter > 2 || Time.time >= lastTimeAttacked + comboWindow)
+        if (comboCounter > 3 || Time.time >= lastTimeAttacked + comboWindow)
             comboCounter = 0;
 
         player.Anim.SetInteger("ComboCounter", comboCounter);
@@ -33,10 +33,7 @@ public class PlayerPrimaryAttackState : PlayerState
             attackDir = xInput;
 
 
-        player.SetVelocity(player.attackMovement[comboCounter].x * attackDir, player.attackMovement[comboCounter].y);
-
-
-        stateTimer = .1f;
+        player.attackDetails.attackLevel = 1;
     }
 
 

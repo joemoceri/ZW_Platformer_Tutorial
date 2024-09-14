@@ -37,4 +37,17 @@ public class PlayerAnimationTriggers : MonoBehaviour
          }*/
         Debug.Log("Trying to throw an attack!!!");
     }
+
+    public void AttackMovement()
+    {
+        int comboCounter = player.Anim.GetInteger("ComboCounter");
+
+        player.SetAttackVelocity(
+           player.attackDetails.primaryAttackMovements[comboCounter].x * player.facingDir,
+           player.attackDetails.primaryAttackMovements[comboCounter].y,
+           player.attackDetails.primaryAttackMovements[comboCounter].z,
+           player.attackDetails.primaryAttackSpeeds[comboCounter]);
+
+        player.ActionMovement(player.attackDetails.primaryAttackTimes[comboCounter]);
+    }
 }

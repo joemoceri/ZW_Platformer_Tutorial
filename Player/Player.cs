@@ -18,8 +18,7 @@ public class Player : Entity
     public float jumpForce = 10f;
 
     [Header("Attack details")]
-    public Vector3[] attackMovement;
-    public float counterAttackDuration = .2f;
+    public PlayerAttackDetails attackDetails;
     #endregion
 
     protected override void Start() 
@@ -46,4 +45,7 @@ public class Player : Entity
     }
 
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+
+    public void ActionMovement(float speed) => stateMachine.currentState.ActionMovement(speed);
+
 }

@@ -36,7 +36,6 @@ public class PlayerState
 
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
-        //player.Anim.SetFloat("yVelocity", rb.velocity.y);
     }
 
     public virtual void FixedUpdate()
@@ -68,5 +67,10 @@ public class PlayerState
     public void SetXInput(float value)
     {
         xInput = value;
+    }
+
+    public virtual void ActionMovement(float time)
+    {
+        stateTimer = time;
     }
 }
